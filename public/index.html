@@ -16,7 +16,23 @@
 
     <script>
         document.querySelector("form").addEventListener("submit", () => {
-            
+            const taskName = document.querySelector("#taskName").nodeValue
+            e.preventDefault()
+            fetch("http://localhost:3000/tasks", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                },
+                body: JSON.stringify({
+                    "userId": 1,
+                    "title": taskName
+                })
+            })
+                .then( response => response.json())
+                .then(data => {
+                    console.log(data)
+                })
+
         })
     </script>
 </body>
